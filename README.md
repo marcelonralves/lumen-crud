@@ -1,28 +1,65 @@
-<<<<<<< HEAD
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+# Lumen CRUD
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+API Restful feita usando o Lumen, um CRUD de usuário
 
-## Official Documentation
+# Como usar?
+- Primeiro passo: Clonar o repositório
+```bash
+git clone https://github.com/marcelonralves/lumen-crud.git
+```
+- Segundo passo: Instalar as dependências
+```bash
+composer install
+```
+- Terceiro passo: Configure a sua conexão com o banco de dados no seu env e execute o comando abaixo
+```bash
+php artisan migrate
+```
+- Quarto passo: Rodar um servidor interno fornecido pelo próprio php
+```bash
+php -S localhost:8080 -t public
+```
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Uso
 
-## Contributing
+```html
+POST: /user -> salvar usuário 
+```
+Parametros: string name, string document, string email, password, int number
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```html
+GET: /users -> listar todos os usuários
+```
 
-## Security Vulnerabilities
+```html
+GET: /user/{id} -> listar usuário por id 
+```
+Parametro: int id
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```html
+PUT: /user -> atualizar algum dado do usuário
+```
+Parametro obrigatório: int id
 
-## License
+Parametros aceitos: string name, string document, string email, password, int number
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# lumen-crud
->>>>>>> bda7ff0a38403ca06cc68972bc36749484028394
+```html
+DELETE: /user/{id} -> deletar um usuário em específico
+```
+Parametro: int id
+
+
+## Rodando os testes
+
+Para rodar os testes, rode o seguinte comando
+
+```bash
+ vendor/bin/phpunit --testdox
+```
+
+
+## Melhorias
+
+- Autenticação com passport
+- Repository pattern
