@@ -29,4 +29,11 @@ class UserController extends Controller
 
         return response()->json(["message" => "user registered succefully"]);
     }
+
+    public function listUsers()
+    {
+        $user = User::paginate(10);
+
+        return response()->json($user);
+    }
 }
