@@ -30,10 +30,22 @@ class UserController extends Controller
         return response()->json(["message" => "user registered succefully"]);
     }
 
-    public function listUsers()
+    public function getUsers()
     {
         $user = User::paginate(10);
 
         return response()->json($user);
+    }
+
+    public function getUser(string $document)
+    {
+
+        $user = User::where('document', $document);
+
+        if($user->doesntExist()){
+           return response()->json(["message" => "this user doesnt exist"], 400);
+        }
+
+        return response()->json($user->first());
     }
 }

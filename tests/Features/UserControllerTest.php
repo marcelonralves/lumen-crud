@@ -64,4 +64,6 @@ class UserControllerTest extends TestCase
         $this->get('/users');
         $this->assertResponseOk();
     }
+
+
 }
