@@ -21,33 +21,62 @@ php artisan migrate
 php -S localhost:8080 -t public
 ```
 
-## Uso
 
-```html
-POST: /user -> salvar usuário 
-```
-Parametros: string name, string document, string email, password, int number
+## Documentação da API
 
-```html
-GET: /users -> listar todos os usuários
+#### Cadastrar um usuário
+
+```http
+  POST /user
 ```
 
-```html
-GET: /user/{id} -> listar usuário por id 
-```
-Parametro: int id
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | **Obrigatório**. O nome do usuário |
+| `document` | `string` | **Obrigatório**. O CPF do usuário |
+| `email` | `string` | **Obrigatório**. O email do usuário |
+| `password` | `string` | **Obrigatório**. A senha do usuário |
+| `number` | `int` | **Obrigatório**. O número de telefone do usuário |
 
-```html
-PUT: /user -> atualizar algum dado do usuário
-```
-Parametro obrigatório: int id
+#### Retorna um usuário
 
-Parametros aceitos: string name, string document, string email, password, int number
-
-```html
-DELETE: /user/{id} -> deletar um usuário em específico
+```http
+  GET /user/{id}
 ```
-Parametro: int id
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. ID do usuário |
+
+#### Retorna um usuário
+
+```http
+  GET /users/
+```
+
+#### Atualizar usuário
+
+```http
+  PUT /user
+```
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `int` | **Obrigatório**. o ID do usuário que deseja atualizar |
+| `name` | `string` | **Opcional**. O nome do usuário |
+| `document` | `string` | **Opcional**. O CPF do usuário |
+| `email` | `string` | **Opcional**. O email do usuário |
+| `password` | `string` | **Opcional**. A senha do usuário |
+| `number` | `int` | **Opcional**. O número de telefone do usuário |
+
+#### Deletar usuário
+
+```http
+  DELETE /user/{id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `int` | **Obrigatório**. ID do usuário que deseja apagar |
 
 
 ## Rodando os testes
