@@ -21,4 +21,5 @@ $router->post('/user', 'UserController@postUser');
 $router->get('/users', 'UserController@getUsers');
 $router->put('/user', 'UserController@putUser');
 $router->get('/user/{id}', 'UserController@getUser');
+$router->delete('/user/{id}', 'UserController@deleteUser');
 

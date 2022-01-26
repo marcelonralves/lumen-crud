@@ -63,4 +63,17 @@ class UserController extends Controller
 
         return response()->json(["message" => "user updated"]);
     }
+
+    public function deleteUser(Request $request, int $id)
+    {
+        $request->merge(['id' => $id]);
+
+        $this->validate($request, [
+            'id' => 'required|exists:users,id'
+        ]);
+
+        User::destroy($request->input('id'));
+
+        return response()->json(["message" => "user deleted"]);
+    }
 }

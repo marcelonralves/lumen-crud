@@ -89,4 +89,10 @@ class UserControllerTest extends TestCase
         $this->seeJson(["message" => "user updated"]);
         $this->seeInDatabase("users", $payload);
     }
+
+    public function test_try_to_delete_a_user()
+    {
+        $this->delete('/user/2');
+        $this->assertResponseStatus(200);
+    }
 }
