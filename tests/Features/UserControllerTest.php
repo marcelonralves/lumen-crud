@@ -65,5 +65,28 @@ class UserControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
+    public function test_if_user_that_doesnt_exist_to_update()
+    {
+        $payload = [
+            'id' => 102901
+        ];
+        $this->put('/user', $payload);
 
+        $this->assertResponseStatus(422);
+    }
+
+    public function test_user_try_to_update_email()
+    {
+        $userFactory = User::factory()->create();
+
+        $payload = [
+            'id' => $userFactory->id,
+            'email' => time().'@hotmail.com',
+        ];
+
+        $this->put('/user', $payload);
+        $this->assertResponseStatus(200);
+        $this->seeJson(["message" => "user updated"]);
+        $this->seeInDatabase("users", $payload);
+    }
 }
