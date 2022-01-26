@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserObserver
 {
-    public function created(User $user)
+    public function updating(User $user)
     {
         $user->password = Hash::make($user->password);
-        $user->save();
+    }
+
+    public function creating(User $user)
+    {
+        $user->password = Hash::make($user->password);
     }
 }
