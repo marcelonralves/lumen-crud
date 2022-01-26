@@ -11,19 +11,11 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'document' => 'required|max:11',
-            'email' => 'required|email',
+            'document' => 'max:11|unique:users,document',
+            'email' => 'email|unique:users,email',
             'password' => 'required',
             'number' => 'required|max:11'
         ]);
-
-        if(User::where('document', $request->input('document'))->exists()) {
-            return response()->json(["message" => "there is a user using this document already"], 400);
-        }
-
-        if(User::where('email', $request->input('email'))->exists()) {
-            return response()->json(["message" => "there is a user using this email already"], 400);
-        }
 
         User::create($request->only('name', 'document', 'email', 'password', 'number'));
 
@@ -37,13 +29,15 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function getUser(string $id)
+    public function getUser(Request $request, int $id)
     {
-        try {
-            $user = User::findOrFail($id);
-        } catch (\Exception $exception) {
-            return response()->json(["message" => "user not found"], 403);
-        }
+        $request->merge(['id' => $id]);
+
+        $this->validate($request, [
+            'id' => 'required|exists:users,id'
+        ]);
+
+        $user = User::findOrFail($id);
 
         return response()->json($user->first());
     }

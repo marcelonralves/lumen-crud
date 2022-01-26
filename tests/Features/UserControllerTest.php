@@ -54,9 +54,7 @@ class UserControllerTest extends TestCase
         ];
 
         $this->post('/user', $payload);
-        $this->assertResponseStatus(400);
-        $this->seeJson(["message" => "there is a user using this email already",
-                        "message" => "there is a user using this document already"]);
+        $this->assertResponseStatus(422);
     }
 
     public function test_if_list_users_route_is_ok()
@@ -92,7 +90,8 @@ class UserControllerTest extends TestCase
 
     public function test_try_to_delete_a_user()
     {
-        $this->delete('/user/2');
+        $userFactory = User::factory()->create();
+        $this->delete('/user/'.$userFactory->id);
         $this->assertResponseStatus(200);
     }
 }
