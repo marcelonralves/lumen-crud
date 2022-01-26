@@ -37,13 +37,13 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function getUser(string $document)
+    public function getUser(string $id)
     {
 
-        $user = User::where('document', $document);
-
-        if($user->doesntExist()){
-           return response()->json(["message" => "this user doesnt exist"], 400);
+        try {
+            $user = User::findOrFail($id);
+        } catch (\Exception $exception) {
+            return response()->json(["message" => "user not found"], 403);
         }
 
         return response()->json($user->first());
