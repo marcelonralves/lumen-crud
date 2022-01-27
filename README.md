@@ -26,7 +26,7 @@ php -S localhost:8080 -t public
 
 #### Cadastrar um usuário
 
-```http
+```
   POST /user
 ```
 
@@ -38,9 +38,9 @@ php -S localhost:8080 -t public
 | `password` | `string` | **Obrigatório**. A senha do usuário |
 | `number` | `int` | **Obrigatório**. O número de telefone do usuário |
 
-#### Retorna um usuário
+#### Retornar um usuário
 
-```http
+```
   GET /user/{id}
 ```
 
@@ -48,15 +48,15 @@ php -S localhost:8080 -t public
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Obrigatório**. ID do usuário |
 
-#### Retorna um usuário
+#### Retornar todos os usuários cadastrados
 
-```http
-  GET /users/
+```
+  GET /users
 ```
 
-#### Atualizar usuário
+#### Atualizar um usuário específico
 
-```http
+```
   PUT /user
 ```
 | Parâmetro   | Tipo       | Descrição                           |
@@ -70,7 +70,7 @@ php -S localhost:8080 -t public
 
 #### Deletar usuário
 
-```http
+```
   DELETE /user/{id}
 ```
 
@@ -83,7 +83,7 @@ php -S localhost:8080 -t public
 
 Para rodar os testes, rode o seguinte comando
 
-```bash
+```
  vendor/bin/phpunit --testdox
 ```
 
